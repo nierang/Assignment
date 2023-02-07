@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style>
+     body {
+      color: red;
+      text-align: center;
+      } 
+ 
+    </style>
+  </head>
+  <body>
+    
+    <h1>Hello, {{ user.username|default:'Guest' }}</h1>
+
+    <p> Welcome to the Our site</p>
+    <div>
+      {% if user.is_authenticated %}
+          <img src="https://cdn2.stylecraze.com/wp-content/uploads/2013/07/25-Most-Beautiful-Blue-Flowers.jpg" alt="alternatetext" style="width:100px;height:100px;">
+          <br><br>
+
+          <h1>Upload a Photo to facebook</h1>
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="photo">
+            <input type="submit" value="Upload">
+          </form>
+
+          <br><br><br><br>
+          <a href="{% url 'logout' %}">Logout</a>
+    
+      {% else %}
+          <a href="{% url 'signup' %}">Sign Up</a>
+          <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+  </div>
+  
+  </body>
+</html>
